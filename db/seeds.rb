@@ -56,7 +56,10 @@ Tag.create!([
   {name: "indonesian original"}
 ])
 
-User.create!(username: "qurinainun", password: "qurinainun")
+User.create!([
+  {username: "qurinainun", password: "qurinainun"},
+  {username: "ainunqurin", password: "ainunqurin"}
+  ])
 
 Voucher.create!([
   {code: "15PERSEN", valid_from: "2017-11-05", valid_through: "2018-11-15", amount: "15.0", unit_type: "% (Persentage)", max_amount: "30000.0"}
@@ -71,3 +74,8 @@ Role.create!(
 Role.create!(
   name: "customer"
 )
+
+Assignment.create!([
+  {user_id: 1, role_id: 1},
+  {user_id: 2, role_id: 2}
+])

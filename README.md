@@ -37,6 +37,12 @@ I using Ubuntu 16.04 LTS
   - $rails server
   - open your browser, http://localhost:3000/
   (for some version of linux, you'll find error, so open your Gemfile, uncomment gem 'therubyracer', platforms: :ruby, then type 'bundle' in console)
-  - your application is running!!
 
+5. When you running in localhost, automatically your role is admin. In this app there are 2 roles, administrator and customer, you can change or add user by edit in user tab. (Because you are admin right now, so can edit it). From data seed there are 2 users that can you use. 
+- administrator
+  username: qurinainun
+  password: qurinainun
 
+- customer
+  username: ainunqurin
+  password: ainunqurin
