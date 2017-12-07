@@ -6,9 +6,9 @@ This program build by Pair-Programming with Aris (https://github.com/rizhima/)
 I using Ubuntu 16.04 LTS
 
 1. Install Ruby, in this tutorial we use rvm to install, https://rvm.io/
-  ` $gpg --keyserver hkp://keys.gnupg.net --recv-keys 409B6B1796C275462A1703113804BB82D39DC0E3 7D2BAF1CF37B13E2069D6956105BD0E739499BDB
-  ` $\curl -sSL https://get.rvm.io | bash -s stable
-  ` $rvm install 2.4.2
+  - ` $gpg --keyserver hkp://keys.gnupg.net --recv-keys 409B6B1796C275462A1703113804BB82D39DC0E3 7D2BAF1CF37B13E2069D6956105BD0E739499BDB
+  - ` $\curl -sSL https://get.rvm.io | bash -s stable
+  - ` $rvm install 2.4.2
 
 2. Install Rails,
   - $gem install rails(in this tutorial 5.1.4 version)
