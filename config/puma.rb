@@ -7,8 +7,8 @@
 threads_count = ENV.fetch("RAILS_MAX_THREADS") { 5 }
 threads threads_count, threads_count
 
+bind "unix:///home/yudiutomo/go-food-mentor/go-food-pair-project/tmp/sockets/puma.sock"
 
-bind "unix:///home/aris/go-food/tmp/sockets/puma.sock"
 
 # Specifies the `port` that Puma will listen on to receive requests; default is 3000.
 #
@@ -58,4 +58,4 @@ end
 # Allow puma to be restarted by `rails restart` command.
 plugin :tmp_restart
 
-pidfile '/home/aris/go-food/tmp/pids/puma.pid'
+pidfile '/home/yudiutomo/go-food-mentor/go-food-pair-project/tmp/pids/puma.pid'
