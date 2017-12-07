@@ -44,11 +44,12 @@ jobs:
       - run:
         name: run tests
         command: |
-        mkdir -p /tmp/test-results
-        TEST_FILES="$(circleci tests glob "spec/**/*_spec.rb" | circleci tests split --split-by=timings)"
-        bundle exec rspec --format documentation \
-                          --out /tmp/test-results/rspec.xml \
-                          -- $(echo "${TEST_FILES}" | sed -e 's/\n/\\n/' -e 's/ /\ /')
+              mkdir -p /tmp/test-results
+              TEST_FILES="$(circleci tests glob "spec/**/*_spec.rb" | circleci tests split --split-by=timings)"
+              bundle exec rspec --format documentation \
+                          --format RspecJunitFormatter \
+                        --out /tmp/test-results/rspec.xml \
+                        -- $(echo "${TEST_FILES}" | sed -e 's/\n/\\n/' -e 's/ /\ /')
 
       # collect reports
       - store_test_results:

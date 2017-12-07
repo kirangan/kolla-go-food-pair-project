@@ -58,6 +58,7 @@ group :development, :test do
   gem 'capybara', '~> 2.13'
   gem 'selenium-webdriver'
   gem 'rspec-rails', ">= 3.5.2"
+  gem 'rspec_junit_formatter'
   gem 'factory_girl_rails',"~> 4.4.1"
   gem 'rails-controller-testing'
 end
@@ -83,4 +84,3 @@ end
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
 gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
-# gem 'rspec_junit_formatter'
