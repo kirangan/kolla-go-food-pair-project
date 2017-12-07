@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>GoFood</title>
+    <%= csrf_meta_tags %>
+
+    <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+  </head>
+
+  <body class="<%= controller.controller_name %>">
+    <div id="banner">
+      <%= image_tag 'go-food.png', alt: "Simplified Go Food" %>
+      <span class="title"><%= @page_title %></span>
+    </div>
+    <div id="columns">
+      <div id="side">
+        <% if session[:user_id] %>
+          <% if session[:userid_roles].include?("administrator") %>
+            <ul>
+              <li><%= link_to 'Orders', orders_path %></li>
+              <li><%= link_to 'Vouchers', vouchers_path %></li>
+              <li><%= link_to 'Restaurants', restaurants_path %></li>
+              <li><%= link_to 'Category', categories_path %></li>
+              <li><%= link_to 'Tags', tags_path %></li>
+              <li><%= link_to 'Orders', orders_path %></li>
+              <li><%= link_to 'Foods', foods_path %></li>
+              <li><%= link_to 'Users', users_path %></li>
+              <br>
+            </ul>
+          <% end %>
+          <strong><%= button_to 'Logout', logout_path, method: :delete %></strong>
+        <% else %>
+          <ul>
+            <li><%= link_to 'Login', login_path %></li>
+          </ul>
+        <% end %>
+
+      <div id="cart">
+        <% if @cart %>
+          <%= hidden_div_if(@cart.line_items.empty?, id: 'cart') do %>
+            <%= render @cart %>
+          <% end %>
+        <% end %>
+      </div>
+        <ul>
+        <br>
+        <br>
+          <li><%= link_to 'Home', store_index_path %></li>
+          <% if session[:user_id] %>
+            <li><%= link_to 'My Account', user_path(id: session[:user_id]) %></li>
+            <% end %>
+        </ul>
+
+        <br>
+        <br>
+        <div style="color: white;">
+          <h4>By Restaurant</h4>
+          <ul>
+          <% @res=Restaurant.all %>
+          <% @res.each do |r| %>
+          <% if r.foods.length != 0 %>
+            <li><%= link_to r.name, r %></li>
+            <% end %>
+          <% end %>
+          </ul>
+        </div>
+
+        <div style="color: white;">
+          <h4>By Category</h4>
+          <ul>
+          <% @cat=Category.all %>
+          <% @cat.each do |category| %>
+          <% if category.foods.length != 0 %>
+            <li><%= link_to category.name, category %></li>
+            <% end %>
+          <% end %>
+          </ul>
+        </div>
+
+      </div>
+      <div id="main">
+    <%= yield %>
+  </body>
+</html>

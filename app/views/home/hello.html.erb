@@ -1,0 +1,15 @@
+<h1>Home#hello</h1>
+<p>Find me in app/views/home/hello.html.erb</p>
+
+<h1>GO-Food App with Rails</h1>
+<p>now is <%= @time %></p>
+<% @time+=1 %>
+<p>tomorrow is <%= @time.strftime('%A') %></p>
+
+<h2>List All Users</h2>
+
+<ul>
+  <% @users.each do |user|   %>
+  <li><%= user.username %> - <%= user.full_name %></li>
+  <% end %>
+</ul>

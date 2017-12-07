@@ -1,0 +1,42 @@
+<%= form_with(model: user, local: true) do |form| %>
+  <% if user.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(user.errors.count, "error") %> prohibited this user from being saved:</h2>
+
+      <ul>
+      <% user.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+  <fieldset>
+    <legend>Enter User Detail</legend>
+  <div class="field">
+    <%= form.label :username %>
+    <%= form.text_field :username, size: 40 %>
+  </div>
+
+  <div class="field">
+    <%= form.label :password %>
+    <%= form.password_field :password, size:40 %>
+  </div>
+
+  <div class="field">
+    <%= form.label :password_confirmation, 'Confirm:' %>
+    <%= form.password_field :password_confirmation %>
+  </div>
+  <%#if session[:userid_roles].include?("administrator") %>
+    <div class="field">
+      <%= form.collection_check_boxes :role_ids, Role.all, :id, :name do |b| %>
+      <div class="box">
+        <%= b.check_box %>
+        <%= b.label %>
+      </div>
+    <%# end %>
+  <% end %>
+  <div class="actions">
+    <%= form.submit %>
+  </div>
+  </fieldset>
+<% end %>

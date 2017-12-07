@@ -1,0 +1,62 @@
+<p id="notice"><%= notice %></p>
+<h2>Your Order is Success</h2>
+<p>
+  <strong>Name:</strong>
+  <%= @order.name %>
+</p>
+
+
+<p>
+  <strong>Email:</strong>
+  <%= @order.email %>
+</p>
+
+<p>
+  <strong>Address:</strong>
+  <%= @order.address %>
+</p>
+
+<p>
+  <strong>Payment Type:</strong>
+  <%= @order.payment_type %>
+</p>
+
+<p><strong>Order Detail:</strong></p>
+
+<table class="table">
+<tr align="center">
+  <td>No</td>
+  <td>Nama</td>
+  <td>Qty</td>
+  <td>Harga</td>
+  <td>Subtotal</td>
+</tr>
+<% i=1 %>
+<% @order.line_items.each do |line|  %>
+  <tr class="<%= cycle('list_line_odd','list_line_even')%>">
+    <td><%= i %></td>
+    <td><%= line.food.name %></td>
+    <td><%= line.quantity %></td>
+    <td align="right"><%= number_to_currency(line.food.price, unit: "Rp ", delimiter: ".", separator: ",")  %> </td>
+    <td align="right"><%= number_to_currency(line.total_price, unit: "Rp ", delimiter: ".", separator: ",") %></td>
+  </tr>
+  <% i+=1 %>
+<% end %>
+<tr>
+  <td colspan="4" align="center"><strong>TOTAL</strong></td>
+  <td align="right" colspan="4"><%= number_to_currency(@order.sub_total, unit: "Rp ", delimiter: ".", separator: ",") %></td>
+</tr>
+<tr>
+  <td colspan="4" align="center"><strong>DELIVERY COST (<%= (@order.distance.to_f / 1000).round(2) %> Km) </strong></td>
+  <td align="right" colspan="4"><%= number_to_currency(@order.delivery_cost, unit: "Rp ", delimiter: ".", separator: ",") %></td>
+</tr>
+<tr>
+  <td colspan="4" align="center"><strong>DISCOUNT</strong><% if @order.voucher_id != nil %>(<%= @order.voucher.code %>)<% end %></td>
+  <td align="right" colspan="4"><%= number_to_currency(@order.discount, unit: "Rp ", delimiter: ".", separator: ",") %></td>
+</tr>
+<tr>
+  <td colspan="4" align="center"><strong>GRANDTOTAL</strong></td>
+  <td align="right" colspan="4"><%= number_to_currency(@order.total_price, unit: "Rp ", delimiter: ".", separator: ",") %></td>
+</tr>
+</table>
+<%= link_to 'Back', store_index_path %>

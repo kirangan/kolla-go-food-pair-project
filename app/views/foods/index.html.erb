@@ -1,0 +1,45 @@
+<p id="notice"><%= notice %></p>
+
+<%= form_tag(foods_path) do %>
+  <%= text_field_tag :term %>
+  <%= submit_tag 'Search' %>
+<% end %>
+
+
+
+<% for food in @foods %>
+<div class='task'>
+    <strong> <%= food.name %> </strong>
+</div>
+<% end %>
+
+<h1>Foods</h1>
+
+<table>
+    <% @foods.each do |food| %>
+      <tr class="<%= cycle('list_line_odd','list_line_even')%>">
+        <td>
+          <%= image_tag(food.image_url, class: 'list_image')%>
+        </td>
+        <td class="list_description">
+          <d1>
+            <dt><%= food.name %></dt>
+            <dd><%= truncate(strip_tags(food.description), length:80) %></dd>
+            <dd>Rp <%= food.price %></dt>
+          </d1>
+        </td>
+
+        <td class="list_action">
+          <%= link_to 'Show', food %>
+          <%= link_to 'Edit', edit_food_path(food) %>
+          <%= link_to 'Destroy', food, method: :delete, data: { confirm: 'Are you sure?' } %>
+        </td>
+
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Food', new_food_path %>
